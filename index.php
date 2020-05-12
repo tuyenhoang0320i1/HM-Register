@@ -7,6 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+<style>
+    span.error {
+        color: #ff0000;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: solid 1px #ccc;
+    }
+
+    form {
+        width: 500px;
+    }
+</style>
 <body>
 <?php
 function loadRegistrations($filename)
@@ -16,8 +33,8 @@ function loadRegistrations($filename)
     return $arr_data;
 }
 
-function saveDataSON($filename, $name, $email, $phone)
-{
+function saveDataJSON($filename, $name, $email, $phone) {
+
     try {
         $contact = array(
             'name' => $name,
@@ -69,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $has_error = true;
     }
     if ($has_error === false) {
-        saveDataSON("data.json", $name, $email, $phone);
+        saveDataJSON("data.json", $name, $email, $phone);
         $name = NULL;
         $email = NULL;
         $phone = NULL;
